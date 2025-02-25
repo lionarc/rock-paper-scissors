@@ -75,4 +75,10 @@ function playGame() {
     } else {
         console.log("It's a tie")
     }
+    resetGame();
+}
+
+function resetGame() {
+    humanScore = 0;
+    computerScore = 0;
 }

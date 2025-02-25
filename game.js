@@ -21,35 +21,40 @@ function getComputerChoice() {
 
 function getHumanChoice() {
     let humanChoice = prompt("Rock, Paper or Scissors – what's your choice?");
-    if (humanChoice == "Rock" && "Paper" && "Scissors") {
-        return humanChoice
+    if (humanChoice == "Rock" || "Paper" || "Scissors") {
+        return humanChoice;
     } else {
         return "Error. Couldn't recognize your choice. Please try again!"
     }
 }
 
 function playRound() {
-    getHumanChoice();
-    getComputerChoice();
-    if (humanChoice == computerChoice) {
+    humanChoice = getHumanChoice();
+    computerChoice = getComputerChoice();
+    console.log("User chooses: " + humanChoice);
+    console.log("Computer chooses: " + computerChoice);
+    
+    if (humanChoice === computerChoice) {
         console.log("It's a tie. Nobody gets this rounds point.")
-    } else if (humanChoice == "Rock" && computerChoice == "Scissors") {
+    } else if (humanChoice === "Rock" && computerChoice === "Scissors") {
         console.log("Congrats! User wins a point!")
         humanScore += 1;
-    } else if (humanChoice == "Rock" && computerChoice == "Paper") {
-        console.log("Congrats! Computer wins a point!")
+    } else if (humanChoice === "Rock" && computerChoice === "Paper") {
+        console.log("Oh no! Computer wins a point!")
         computerScore += 1;
-    } else if (humanChoice == "Paper" && computerChoice == "Rock") {
+    } else if (humanChoice === "Paper" && computerChoice === "Rock") {
         console.log("Congrats! User wins a point!")
         humanScore += 1;
-    } else if (humanChoice == "Paper" && computerChoice == "Scissors") {
-        console.log("Congrats! Computer wins a point!")
+    } else if (humanChoice === "Paper" && computerChoice === "Scissors") {
+        console.log("Oh no! Computer wins a point!")
         computerScore += 1;
-    } else if (humanChoice == "Scissors" && computerChoice == "Rock") {
-        console.log("Congrats! Computer wins a point!")
+    } else if (humanChoice === "Scissors" && computerChoice === "Rock") {
+        console.log("Oh no! Computer wins a point!")
         computerScore += 1;
-    } else if (humanChoice == "Scissors" && computerChoice == "Paper") {
+    } else if (humanChoice === "Scissors" && computerChoice === "Paper") {
         console.log("Congrats! User wins a point!")
         humanScore += 1;
     }
+    console.log("User score: " + humanScore);
+    console.log("Computer score: " + computerScore);
 }

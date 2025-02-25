@@ -62,3 +62,17 @@ function playRound() {
     console.log("User score: " + humanScore);
     console.log("Computer score: " + computerScore);
 }
+
+function playGame() {
+    for (let i = 1; i <= 5; i++) {
+        console.log("Round " + i);
+        playRound();
+    }
+    if (humanScore > computerScore) {
+        console.log("Amazing!!! User wins the whole game.")
+    } else if (computerScore > humanScore) {
+        console.log("Ok. Computer has won. Try again!")
+    } else {
+        console.log("It's a tie")
+    }
+}

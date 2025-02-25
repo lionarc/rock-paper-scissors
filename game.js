@@ -28,12 +28,16 @@ function getHumanChoice() {
     }
 }
 
+function capitalizeFirstLetter(val) {
+    return String(val).charAt(0).toUpperCase() + String(val).slice(1).toLowerCase();
+}
+
 function playRound() {
-    humanChoice = getHumanChoice();
+    humanChoice = capitalizeFirstLetter(getHumanChoice());
     computerChoice = getComputerChoice();
     console.log("User chooses: " + humanChoice);
     console.log("Computer chooses: " + computerChoice);
-    
+
     if (humanChoice === computerChoice) {
         console.log("It's a tie. Nobody gets this rounds point.")
     } else if (humanChoice === "Rock" && computerChoice === "Scissors") {

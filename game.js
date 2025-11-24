@@ -1,7 +1,7 @@
 
-let humanChoice = "";
 let humanScore = 0;
 let computerScore = 0;
+let playerSelection = "";
 
 function getComputerChoice() {
     let randomNumber = Math.floor(Math.random() * 3);
@@ -15,64 +15,70 @@ function getComputerChoice() {
     }
 }
 
-function getHumanChoice() {
-    let humanChoice = prompt("Rock, Paper or Scissors – what's your choice?");
-    if (humanChoice === "Rock" || "Paper" || "Scissors") {
-        return humanChoice;
-    } else {
-        console.log("Error. Couldn't recognize your choice. Please try again!")
-    }
-}
+function playRound(playerSelection) {
 
-function capitalizeFirstLetter(val) {
-    return String(val).charAt(0).toUpperCase() + String(val).slice(1).toLowerCase();
-}
-
-function playRound() {
-    humanChoice = capitalizeFirstLetter(getHumanChoice());
     let computerChoice = getComputerChoice();
 
-    console.log("User chooses: " + humanChoice);
+    console.log("PlayerSelection: " + playerSelection);
     console.log("Computer chooses: " + computerChoice);
 
-    if (humanChoice === computerChoice) {
+    // Update player selection display
+    document.getElementById('result').innerHTML = `
+        <p>Player Selection: ${playerSelection}</p>
+        <p>Computer Selection: ${computerChoice}</p>
+    `;
+
+    if (playerSelection === computerChoice) {
         console.log("It's a tie. Nobody gets this rounds point.")
-    } else if (humanChoice === "Rock" && computerChoice === "Scissors") {
+        document.getElementById('result').innerHTML += `<p>It's a tie!</p>`;
+    } else if (playerSelection === "Rock" && computerChoice === "Scissors") {
         console.log("Congrats! User wins a point!")
         humanScore++;
-    } else if (humanChoice === "Rock" && computerChoice === "Paper") {
+        document.getElementById('result').innerHTML += `<p>Congrats! You win this round!</p>`;
+    } else if (playerSelection === "Rock" && computerChoice === "Paper") {
         console.log("Oh no! Computer wins a point!")
         computerScore++;
-    } else if (humanChoice === "Paper" && computerChoice === "Rock") {
+        document.getElementById('result').innerHTML += `<p>Computer wins this round!</p>`;
+    } else if (playerSelection === "Paper" && computerChoice === "Rock") {
         console.log("Congrats! User wins a point!")
         humanScore++;
-    } else if (humanChoice === "Paper" && computerChoice === "Scissors") {
+        document.getElementById('result').innerHTML += `<p>Congrats! You win this round!</p>`;
+    } else if (playerSelection === "Paper" && computerChoice === "Scissors") {
         console.log("Oh no! Computer wins a point!")
         computerScore++;
-    } else if (humanChoice === "Scissors" && computerChoice === "Rock") {
+        document.getElementById('result').innerHTML += `<p>Computer wins this round!</p>`;
+    } else if (playerSelection === "Scissors" && computerChoice === "Rock") {
         console.log("Oh no! Computer wins a point!")
         computerScore++;
-    } else if (humanChoice === "Scissors" && computerChoice === "Paper") {
+        document.getElementById('result').innerHTML += `<p>Computer wins this round!</p>`;
+    } else if (playerSelection === "Scissors" && computerChoice === "Paper") {
         console.log("Congrats! User wins a point!")
         humanScore++;
+        document.getElementById('result').innerHTML += `<p>Congrats! You win this round!</p>`;
     }
     console.log("User score: " + humanScore);
     console.log("Computer score: " + computerScore);
+    
+    checkForWinner();
+
+    // Update scoreboard
+    document.getElementById('human-score').textContent = humanScore;
+    document.getElementById('computer-score').textContent = computerScore;
 }
 
-function playGame() {
-    for (let i = 1; i <= 5; i++) {
-        console.log("Round " + i);
-        playRound();
-    }
-    if (humanScore > computerScore) {
+function checkForWinner() {
+    if (humanScore === 5) {
+        document.getElementById('winner').innerHTML = `<p>Amazing!!! User wins the whole game.</p>`;
         console.log("Amazing!!! User wins the whole game.")
-    } else if (computerScore > humanScore) {
-        console.log("Ok. Computer has won. Try again!")
-    } else {
-        console.log("It's a tie")
+        resetGame();
     }
-    resetGame();
+    else if (computerScore === 5) {
+        document.getElementById('winner').innerHTML = `<p>Ok. Computer has won. Try again!</p>`;
+        console.log("Ok. Computer has won. Try again!")
+        resetGame();
+    } else {
+        document.getElementById('winner').innerHTML = ``;
+}
 }
 
 function resetGame() {
